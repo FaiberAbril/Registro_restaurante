@@ -651,11 +651,16 @@ public class Panel_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btndashboardMouseClicked
 
     private void btnregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroMouseClicked
+        Entrada entrada = new Entrada();
+        entrada.setVisible(true);
+        this.dispose();
+        
         onClick(btnregistro);
         onleaveClick(btnestudiantes);
         onleaveClick(btndashboard);
         
         p1.setVisible(false);
+        Panelprincipal.setVisible(false);
         p2.setVisible(true);
         p3.setVisible(false);
         p4.setVisible(false);
@@ -663,7 +668,7 @@ public class Panel_Principal extends javax.swing.JFrame {
 
     private void btnestudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnestudiantesMouseClicked
         
-        Registro_estudiante registro_estudiante = new Registro_estudiante();
+         Registro_estudiante registro_estudiante = new Registro_estudiante();
         registro_estudiante.setVisible(true);
         this.dispose();
         
