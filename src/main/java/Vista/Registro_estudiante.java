@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.synth.Region;
 
@@ -46,6 +47,12 @@ public class Registro_estudiante extends javax.swing.JFrame {
         initComponents();
         initializeWebcam();
         setLocationRelativeTo(null);
+        
+        ImageIcon iconosalirestudiante = new ImageIcon("C:/Users/PC-01/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/img/iconocerrar.png");
+        btnsalirestudiantes.setIcon(iconosalirestudiante);
+        
+        ImageIcon icon = new ImageIcon("C:/Users/PC-01/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/img/iconocasa.png");
+        btncasa.setIcon(icon);
         
     }
     
@@ -142,8 +149,11 @@ public class Registro_estudiante extends javax.swing.JFrame {
         pnlCamara = new javax.swing.JPanel();
         btnCapturar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btncasa = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnsalirestudiantes = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,62 +180,62 @@ public class Registro_estudiante extends javax.swing.JFrame {
                 btnguardar2ActionPerformed(evt);
             }
         });
-        panel_registro.add(btnguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, -1, -1));
+        panel_registro.add(btnguardar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 460, -1, -1));
 
         btnmenu.setText("MENU");
-        panel_registro.add(btnmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 460, -1, -1));
+        panel_registro.add(btnmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, -1, -1));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("ESTADO:");
-        panel_registro.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, -1, -1));
+        panel_registro.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, -1, -1));
 
         cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE", "ACTIVO ", "INACTIVO" }));
-        panel_registro.add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 116, -1));
+        panel_registro.add(cbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, 116, -1));
 
         cbBeneficio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE", "BENEFICIO UNICO", "DOBLE BENEFICIO" }));
-        panel_registro.add(cbBeneficio, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        panel_registro.add(cbBeneficio, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("BENEFICIO:");
-        panel_registro.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
+        panel_registro.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, -1, -1));
 
         jLabel7.setBackground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("GRADO:");
-        panel_registro.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
-        panel_registro.add(txtGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 75, -1));
-        panel_registro.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, 75, -1));
+        panel_registro.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, -1, -1));
+        panel_registro.add(txtGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 280, 75, -1));
+        panel_registro.add(txtEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 250, 75, -1));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("EDAD:");
-        panel_registro.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
+        panel_registro.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, -1));
 
         txtnumEstu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnumEstuActionPerformed(evt);
             }
         });
-        panel_registro.add(txtnumEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 155, -1));
+        panel_registro.add(txtnumEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 155, -1));
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("N° DOCUMENTO:");
-        panel_registro.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        panel_registro.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECIONE ", "C.C", "T.I" }));
-        panel_registro.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 180, 94, -1));
+        panel_registro.add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 94, -1));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("TIPO DOCUMENTO:");
-        panel_registro.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        panel_registro.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("APELLIDOS:");
-        panel_registro.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
+        panel_registro.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("NOMBRES:");
-        panel_registro.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, -1, -1));
-        panel_registro.add(txtnomEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 155, -1));
-        panel_registro.add(txtapeEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 155, -1));
+        panel_registro.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+        panel_registro.add(txtnomEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 155, -1));
+        panel_registro.add(txtapeEstu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 155, -1));
 
         pnlCamara.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -252,23 +262,58 @@ public class Registro_estudiante extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+
+        btncasa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncasaMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btncasa, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btncasa, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 500, Short.MAX_VALUE))
         );
 
-        panel_registro.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+        panel_registro.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 600));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("ESTUDIANTES");
+
+        btnsalirestudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnsalirestudiantesMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,13 +322,17 @@ public class Registro_estudiante extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(338, 338, 338)
                 .addComponent(jLabel1)
-                .addContainerGap(475, Short.MAX_VALUE))
+                .addGap(143, 143, 143)
+                .addComponent(btnsalirestudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(btnsalirestudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -293,7 +342,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_registro, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,6 +363,16 @@ public class Registro_estudiante extends javax.swing.JFrame {
     private void btnguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardar2ActionPerformed
        
     }//GEN-LAST:event_btnguardar2ActionPerformed
+
+    private void btnsalirestudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnsalirestudiantesMouseClicked
+        dispose();
+    }//GEN-LAST:event_btnsalirestudiantesMouseClicked
+
+    private void btncasaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncasaMouseClicked
+        Panel_Principal panel_Principal = new Panel_Principal();
+        panel_Principal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btncasaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -356,8 +415,10 @@ public class Registro_estudiante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCapturar;
+    private javax.swing.JLabel btncasa;
     public javax.swing.JButton btnguardar2;
     public javax.swing.JButton btnmenu;
+    private javax.swing.JLabel btnsalirestudiantes;
     public javax.swing.JComboBox<String> cbBeneficio;
     public javax.swing.JComboBox<String> cbEstado;
     public javax.swing.JComboBox<String> cbTipo;
@@ -372,6 +433,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel panel_registro;
     public javax.swing.JPanel pnlCamara;
