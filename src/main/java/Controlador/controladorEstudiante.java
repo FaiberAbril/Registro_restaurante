@@ -49,8 +49,22 @@ public class controladorEstudiante implements ActionListener {
     }
 
     public String  Guarda() {
-               
+         String nomEstu = Reg.txtnomEstu.getText();
+    String apeEstu = Reg.txtapeEstu.getText();
+    String tipoDocu = (String) Reg.cbTipo.getSelectedItem();
+    String numDocumento = Reg.txtnumEstu.getText();
+    String edad = Reg.txtEdad.getText();
+    String grado = Reg.txtGrado.getText();
+    String tipoBeneficio = (String) Reg.cbBeneficio.getSelectedItem();
+    String estado = (String) Reg.cbEstado.getSelectedItem();
 
+    if (nomEstu.isEmpty() || apeEstu.isEmpty() || tipoDocu.isEmpty()
+            || numDocumento.isEmpty() || edad.isEmpty() || grado.isEmpty()
+            || tipoBeneficio.isEmpty() || estado.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+        return null;
+    }      
+        
         e.setNomEstudiante(Reg.txtnomEstu.getText());
         e.setApeEstudiante(Reg.txtapeEstu.getText());
         e.setTipoDocu((String) Reg.cbTipo.getSelectedItem());
@@ -59,8 +73,8 @@ public class controladorEstudiante implements ActionListener {
         e.setGrado(Reg.txtGrado.getText());
         e.setTipoBeneficio((String) Reg.cbBeneficio.getSelectedItem());
         e.setEstado((String) Reg.cbEstado.getSelectedItem());
-
         
+       
         if (InsertarEstudiante(e)) {
             JOptionPane.showMessageDialog(null, "Estudiante Registrado");
             Reg.txtnomEstu.setText("");
@@ -108,7 +122,8 @@ public class controladorEstudiante implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent s) {
-
+                 
+        
         if (s.getSource() == Reg.btnguardar2) {
            String numeroDocumento = Guarda();
            int numeroDocumentoEntero = Integer.parseInt(numeroDocumento);
@@ -190,4 +205,8 @@ public class controladorEstudiante implements ActionListener {
     return listar;
     }
 
+    
+    
+    
+    
 }
