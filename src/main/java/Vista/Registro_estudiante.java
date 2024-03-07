@@ -315,6 +315,7 @@ public void setPP(Panel_Principal pp){
 
     private void btnmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuActionPerformed
 Panel_Principal pp = new Panel_Principal();
+pp.setres(this);
 pp.setVisible(true);
 this.setVisible(false);
     }//GEN-LAST:event_btnmenuActionPerformed

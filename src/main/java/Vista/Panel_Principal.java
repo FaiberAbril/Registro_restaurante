@@ -12,23 +12,25 @@ import javax.swing.JPanel;
 
 public class Panel_Principal extends javax.swing.JFrame {
 
+    private Registro_estudiante res;
+
     /**
      * Creates new form Panel_Principal
      */
     public Panel_Principal() {
         initComponents();
-        ImageIcon icon = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/com/sena/img/iconocasa.png");
+        ImageIcon icon = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconocasa.png");
         jLabel2.setIcon(icon);
         
-        ImageIcon iconoestudiante = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/com/sena/img/iconoestudiantes.png");
+        ImageIcon iconoestudiante = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconoestudiantes.png");
         logoestudiante.setIcon(iconoestudiante);
         
-        ImageIcon iconoregistro = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/com/sena/img/iconoregistro.png");
+        ImageIcon iconoregistro = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconoregistro.png");
         logoregistro.setIcon(iconoregistro);
         
       
         
-        ImageIcon iconoinforme = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Restaurante_Escolar/src/main/java/com/sena/img/iconodashboard.png");
+        ImageIcon iconoinforme = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconodashboard.png");
         logoinforme.setIcon(iconoinforme);
         
 
@@ -161,7 +163,9 @@ public class Panel_Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+public void setres(Registro_estudiante res){
+    this.res = res;
+}
    
     
     private void onClick(JPanel panel){
@@ -179,18 +183,18 @@ dispose();// TODO add your handling code here:
     }//GEN-LAST:event_logoestudianteMouseClicked
 
     private void logoregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoregistroMouseClicked
-Registro_estudiante res = new Registro_estudiante();
-res.setPP(this);
-res.setVisible(true);
-this.setVisible(false);
+        
+        res.setPP(this);
+        res.setVisible(true);
+        this.setVisible(false);
 
 
     }//GEN-LAST:event_logoregistroMouseClicked
 
     private void logoinformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoinformeMouseClicked
-Estudiantes est = new Estudiantes();
-est.setVisible(true);
-this.setVisible(false);
+        Estudiantes est = new Estudiantes();
+        est.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_logoinformeMouseClicked
 
     /**
