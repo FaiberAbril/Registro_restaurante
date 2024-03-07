@@ -4,38 +4,56 @@
  */
 package Vista;
 
-
 import java.awt.Color;
+
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 public class Panel_Principal extends javax.swing.JFrame {
-
+    
+    private Entrada ent;
     private Registro_estudiante res;
+    private Estudiantes est;
 
     /**
      * Creates new form Panel_Principal
      */
     public Panel_Principal() {
         initComponents();
-        ImageIcon icon = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconocasa.png");
-        jLabel2.setIcon(icon);
+        JPanel panel = new JPanel();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/iconocasa.png"));
+        setIconImage(icon.getImage());
         
-        ImageIcon iconoestudiante = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconoestudiantes.png");
-        logoestudiante.setIcon(iconoestudiante);
+        ImageIcon iconoestudiante = new ImageIcon(getClass().getResource("/img/iconoestudiantes.png"));
+        setIconImage(iconoestudiante.getImage());
         
-        ImageIcon iconoregistro = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconoregistro.png");
-        logoregistro.setIcon(iconoregistro);
+        ImageIcon iconoregistro = new ImageIcon(getClass().getResource("/img/iconoregistro.png"));
+        setIconImage(iconoregistro.getImage());
         
-      
+        ImageIcon iconodashboard = new ImageIcon(getClass().getResource("/img/iconodashboard.png"));
+        setIconImage(iconodashboard.getImage());
         
-        ImageIcon iconoinforme = new ImageIcon("C:/Users/CATA/Documents/NetBeansProjects/Registro_restaurante/src/main/java/com/sena/img/iconodashboard.png");
-        logoinforme.setIcon(iconoinforme);
+        btniconoestudiante = new JButton("Estudiante", iconoestudiante);
+        btnregistro = new JButton("Registro", iconoregistro);
+        btnactualizacion = new JButton("Actualizacion", iconodashboard);
         
-
+        jLcasa = new JLabel(icon);
+        
+        panel.add(btniconoestudiante);
+        panel.add(btnregistro);
+        panel.add(btnactualizacion);
+        panel.add(jLcasa);
+        
+        getContentPane().add(panel);
+        
+        pack();
+        setLocationRelativeTo(null);
     }
-    
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,12 +70,12 @@ public class Panel_Principal extends javax.swing.JFrame {
         txtinforme = new javax.swing.JLabel();
         txtregistro1 = new javax.swing.JLabel();
         txtestudiantes = new javax.swing.JLabel();
-        logoestudiante = new javax.swing.JLabel();
-        logoregistro = new javax.swing.JLabel();
-        logoinforme = new javax.swing.JLabel();
+        btniconoestudiante = new javax.swing.JButton();
+        btnregistro = new javax.swing.JButton();
+        btnactualizacion = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLcasa = new javax.swing.JLabel();
 
         javax.swing.GroupLayout p4Layout = new javax.swing.GroupLayout(p4);
         p4.setLayout(p4Layout);
@@ -82,7 +100,7 @@ public class Panel_Principal extends javax.swing.JFrame {
         txtinforme.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txtinforme.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtinforme.setText("ACTUALIZACION");
-        panellateral.add(txtinforme, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, -1, -1));
+        panellateral.add(txtinforme, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, -1, -1));
 
         txtregistro1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txtregistro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -94,27 +112,32 @@ public class Panel_Principal extends javax.swing.JFrame {
         txtestudiantes.setText("ESTUDIANTES");
         panellateral.add(txtestudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
 
-        logoestudiante.addMouseListener(new java.awt.event.MouseAdapter() {
+        btniconoestudiante.setBackground(new java.awt.Color(255, 153, 0));
+        btniconoestudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoestudiantes.png"))); // NOI18N
+        btniconoestudiante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoestudianteMouseClicked(evt);
+                btniconoestudianteMouseClicked(evt);
             }
         });
-        panellateral.add(logoestudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 120, 90));
+        panellateral.add(btniconoestudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 110, 80));
 
-        logoregistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoregistro.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnregistro.setBackground(new java.awt.Color(255, 153, 0));
+        btnregistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoregistro.png"))); // NOI18N
+        btnregistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoregistroMouseClicked(evt);
+                btnregistroMouseClicked(evt);
             }
         });
-        panellateral.add(logoregistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 120, 90));
+        panellateral.add(btnregistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 110, 90));
 
-        logoinforme.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnactualizacion.setBackground(new java.awt.Color(255, 153, 0));
+        btnactualizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconodashboard.png"))); // NOI18N
+        btnactualizacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoinformeMouseClicked(evt);
+                btnactualizacionMouseClicked(evt);
             }
         });
-        panellateral.add(logoinforme, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 120, 90));
+        panellateral.add(btnactualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 330, 110, 90));
 
         Panelprincipal.add(panellateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 570, 500));
 
@@ -124,13 +147,15 @@ public class Panel_Principal extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("RESTAURANTE ESCOLAR");
 
+        jLcasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconocasa.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLcasa, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -143,7 +168,7 @@ public class Panel_Principal extends javax.swing.JFrame {
                 .addGap(42, 42, 42))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLcasa, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -163,39 +188,34 @@ public class Panel_Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void setres(Registro_estudiante res){
-    this.res = res;
-}
-   
-    
-    private void onClick(JPanel panel){
-        panel.setBackground(new Color(120,120,120));
+public void setres(Registro_estudiante res) {
+        this.res = res;
     }
     
-    private void onleaveClick(JPanel panel){
-        panel.setBackground(new Color(102,102,102));
+    private void onClick(JPanel panel) {
+        panel.setBackground(new Color(120, 120, 120));
     }
     
-    private void logoestudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoestudianteMouseClicked
-Entrada entrada = new Entrada();  
-entrada.setVisible(true);
-dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_logoestudianteMouseClicked
+    private void onleaveClick(JPanel panel) {
+        panel.setBackground(new Color(102, 102, 102));
+    }
 
-    private void logoregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoregistroMouseClicked
-        
+    private void btniconoestudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btniconoestudianteMouseClicked
+        ent.setVisible(true);
+        this.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_btniconoestudianteMouseClicked
+
+    private void btnregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroMouseClicked
         res.setPP(this);
         res.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistroMouseClicked
 
-
-    }//GEN-LAST:event_logoregistroMouseClicked
-
-    private void logoinformeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoinformeMouseClicked
-        Estudiantes est = new Estudiantes();
+    private void btnactualizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnactualizacionMouseClicked
+        
         est.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_logoinformeMouseClicked
+        this.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnactualizacionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -234,12 +254,12 @@ dispose();// TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panelprincipal;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnactualizacion;
+    private javax.swing.JButton btniconoestudiante;
+    private javax.swing.JButton btnregistro;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLcasa;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel logoestudiante;
-    private javax.swing.JLabel logoinforme;
-    private javax.swing.JLabel logoregistro;
     private javax.swing.JPanel p4;
     private javax.swing.JPanel panellateral;
     private javax.swing.JLabel txtestudiantes;
@@ -247,5 +267,4 @@ dispose();// TODO add your handling code here:
     private javax.swing.JLabel txtregistro1;
     // End of variables declaration//GEN-END:variables
 
-  
 }
