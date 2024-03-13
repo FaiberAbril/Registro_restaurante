@@ -25,6 +25,7 @@ import javax.swing.plaf.synth.Region;
  * @author CATA
  */
 public class Registro_estudiante extends javax.swing.JFrame {
+
     private Panel_Principal pp;
     int largoCamara = 0;
     int anchoCamara = 0;
@@ -32,7 +33,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
     // Dimension dimsensioncamara = WebcamResolution.VGA.getSize();
     Webcam webcam = Webcam.getDefault();
     WebcamPanel webcamPanel = new WebcamPanel(webcam, dimension, false);
-    
+
     BufferedImage ruta;
     int contador = 0;
 
@@ -46,16 +47,18 @@ public class Registro_estudiante extends javax.swing.JFrame {
         initComponents();
         initializeWebcam();
         setLocationRelativeTo(null);
-        
+
     }
-    
+
     private void initializeWebcam() {
-        
+
         Dimension dimension = new Dimension(320, 240);
         webcam = Webcam.getDefault();
-        webcam.setViewSize(dimension);
+        if (!webcam.isOpen()) {
+            webcam.setViewSize(WebcamResolution.VGA.getSize());
+        }
         webcamPanel = new WebcamPanel(webcam, dimension, false);
-        
+
         pnlCamara.setLayout(new FlowLayout());
         pnlCamara.add(webcamPanel);
         webcamPanel.setFillArea(true);
@@ -64,46 +67,45 @@ public class Registro_estudiante extends javax.swing.JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                webcamPanel.stop();
-                webcam.close();
+
+                try {
+                    webcam.open();
+                    // do your stuff here, take photo etc
+                } finally {
+                    webcamPanel.stop();
+                    webcam.close();
+                }
+
             }
         });
     }
-    
-    
-    
-    
-     public void captureAndSaveImage(String numeroDocumento ) {
+
+    public void captureAndSaveImage(String numeroDocumento) {
         BufferedImage image = webcam.getImage();
         try {
             // Cambia la ruta según donde quieras guardar la imagen
             File folder = new File("src\\main\\java\\fotos");
-          
-            
-             if (!folder.exists()) {
-            folder.mkdirs(); // Asegurar que todos los directorios padres se creen
-             }
-             
-             
-         String fileName = numeroDocumento +".jpg";
-         
+
+            if (!folder.exists()) {
+                folder.mkdirs(); // Asegurar que todos los directorios padres se creen
+            }
+
+            String fileName = numeroDocumento + ".jpg";
+
             System.out.println(folder.getAbsolutePath());
 
-        // Crear el objeto File con la ruta completa del archivo
-        File file = new File(folder, fileName);
+            // Crear el objeto File con la ruta completa del archivo
+            File file = new File(folder, fileName);
 
-        // Guardar la imagen en el archivo
-           
+            // Guardar la imagen en el archivo
             ImageIO.write(image, "JPG", file);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
-            
+
         }
     }
-    
 
-    
     private void startCamera() {
         Thread cameraThread = new Thread(() -> webcamPanel.start());
         cameraThread.setDaemon(true);
@@ -297,16 +299,14 @@ public class Registro_estudiante extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void setPP(Panel_Principal pp){
-    this.pp = pp;
-}
+
 
     private void txtnumEstuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumEstuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnumEstuActionPerformed
 
     private void btnguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardar2ActionPerformed
-       
+
     }//GEN-LAST:event_btnguardar2ActionPerformed
 
     private void btnmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseClicked
@@ -314,10 +314,11 @@ public void setPP(Panel_Principal pp){
     }//GEN-LAST:event_btnmenuMouseClicked
 
     private void btnmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuActionPerformed
-Panel_Principal pp = new Panel_Principal();
-pp.setres(this);
-pp.setVisible(true);
-this.setVisible(false);
+        Panel_Principal pp = new Panel_Principal();
+        pp.setVisible(true);
+        this.setVisible(false);
+
+
     }//GEN-LAST:event_btnmenuActionPerformed
 
     /**
@@ -356,7 +357,7 @@ this.setVisible(false);
             // Inicia la cámara al abrir la ventana
             Reg.startCamera();
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -11,49 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class Panel_Principal extends javax.swing.JFrame {
-    
-    private Entrada ent;
-    private Registro_estudiante res;
-    private Estudiantes est;
 
     /**
      * Creates new form Panel_Principal
      */
     public Panel_Principal() {
         initComponents();
-        JPanel panel = new JPanel();
-        ImageIcon icon = new ImageIcon(getClass().getResource("/img/iconocasa.png"));
-        setIconImage(icon.getImage());
-        
-        ImageIcon iconoestudiante = new ImageIcon(getClass().getResource("/img/iconoestudiantes.png"));
-        setIconImage(iconoestudiante.getImage());
-        
-        ImageIcon iconoregistro = new ImageIcon(getClass().getResource("/img/iconoregistro.png"));
-        setIconImage(iconoregistro.getImage());
-        
-        ImageIcon iconodashboard = new ImageIcon(getClass().getResource("/img/iconodashboard.png"));
-        setIconImage(iconodashboard.getImage());
-        
-        btniconoestudiante = new JButton("Estudiante", iconoestudiante);
-        btnregistro = new JButton("Registro", iconoregistro);
-        btnactualizacion = new JButton("Actualizacion", iconodashboard);
-        
-        jLcasa = new JLabel(icon);
-        
-        panel.add(btniconoestudiante);
-        panel.add(btnregistro);
-        panel.add(btnactualizacion);
-        panel.add(jLcasa);
-        
-        getContentPane().add(panel);
-        
-        pack();
-        setLocationRelativeTo(null);
-    }
 
-   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,7 +79,6 @@ public class Panel_Principal extends javax.swing.JFrame {
         panellateral.add(txtestudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
 
         btniconoestudiante.setBackground(new java.awt.Color(255, 153, 0));
-        btniconoestudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoestudiantes.png"))); // NOI18N
         btniconoestudiante.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btniconoestudianteMouseClicked(evt);
@@ -122,7 +87,6 @@ public class Panel_Principal extends javax.swing.JFrame {
         panellateral.add(btniconoestudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 110, 80));
 
         btnregistro.setBackground(new java.awt.Color(255, 153, 0));
-        btnregistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconoregistro.png"))); // NOI18N
         btnregistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnregistroMouseClicked(evt);
@@ -131,7 +95,6 @@ public class Panel_Principal extends javax.swing.JFrame {
         panellateral.add(btnregistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 110, 90));
 
         btnactualizacion.setBackground(new java.awt.Color(255, 153, 0));
-        btnactualizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconodashboard.png"))); // NOI18N
         btnactualizacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnactualizacionMouseClicked(evt);
@@ -146,8 +109,6 @@ public class Panel_Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 30)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("RESTAURANTE ESCOLAR");
-
-        jLcasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconocasa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -188,31 +149,31 @@ public class Panel_Principal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-public void setres(Registro_estudiante res) {
-        this.res = res;
-    }
-    
+
     private void onClick(JPanel panel) {
         panel.setBackground(new Color(120, 120, 120));
     }
-    
+
     private void onleaveClick(JPanel panel) {
         panel.setBackground(new Color(102, 102, 102));
     }
 
     private void btniconoestudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btniconoestudianteMouseClicked
+        Entrada ent = new Entrada();
         ent.setVisible(true);
         this.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_btniconoestudianteMouseClicked
 
     private void btnregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroMouseClicked
-        res.setPP(this);
+        Registro_estudiante res = new Registro_estudiante();
         res.setVisible(true);
-        this.setVisible(false);        // TODO add your handling code here:
+        this.setVisible(false); 
+         
+    
     }//GEN-LAST:event_btnregistroMouseClicked
 
     private void btnactualizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnactualizacionMouseClicked
-        
+        Estudiantes est = new Estudiantes();
         est.setVisible(true);
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_btnactualizacionMouseClicked

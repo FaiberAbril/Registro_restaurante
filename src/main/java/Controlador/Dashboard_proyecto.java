@@ -4,6 +4,8 @@
 
 package Controlador;
 
+import Vista.Panel_Principal;
+
 /**
  *
  * @author PC-01
@@ -11,6 +13,6 @@ package Controlador;
 public class Dashboard_proyecto {
 
     public static void main(String[] args) {
-        
+     Panel_Principal pp = new Panel_Principal();    
     }
 }
