@@ -49,7 +49,7 @@ public class controladorEstudiante implements ActionListener {
     }
 
     public String  Guarda() {
-         String nomEstu = Reg.txtnomEstu.getText();
+     String nomEstu = Reg.txtnomEstu.getText();
     String apeEstu = Reg.txtapeEstu.getText();
     String tipoDocu = (String) Reg.cbTipo.getSelectedItem();
     String numDocumento = Reg.txtnumEstu.getText();

@@ -17,6 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.plaf.synth.Region;
 
@@ -68,13 +69,13 @@ public class Registro_estudiante extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-                try {
+              /*  try {
                     webcam.open();
                     // do your stuff here, take photo etc
                 } finally {
                     webcamPanel.stop();
                     webcam.close();
-                }
+                }*/
 
             }
         });
@@ -106,7 +107,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
         }
     }
 
-    private void startCamera() {
+    public void startCamera() {
         Thread cameraThread = new Thread(() -> webcamPanel.start());
         cameraThread.setDaemon(true);
         cameraThread.start();
@@ -306,7 +307,28 @@ public class Registro_estudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumEstuActionPerformed
 
     private void btnguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardar2ActionPerformed
-
+       
+      Registrar_Estudiante e = new Registrar_Estudiante();
+      Registro_estudiante Reg = new Registro_estudiante();    
+        
+        
+     String nomEstu = txtnomEstu.getText();
+    String apeEstu = txtapeEstu.getText();
+    String tipoDocu = (String)cbTipo.getSelectedItem();
+    String numDocumento = txtnumEstu.getText();
+    String edad = txtEdad.getText();
+    String grado = txtGrado.getText();
+    String tipoBeneficio = (String) cbBeneficio.getSelectedItem();
+    String estado = (String) cbEstado.getSelectedItem();
+        
+        
+        
+        
+        SwingUtilities.invokeLater(() -> {
+        
+            controladorEstudiante con = new controladorEstudiante(e, Reg);
+        });
+                
     }//GEN-LAST:event_btnguardar2ActionPerformed
 
     private void btnmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseClicked
@@ -315,8 +337,11 @@ public class Registro_estudiante extends javax.swing.JFrame {
 
     private void btnmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuActionPerformed
         Panel_Principal pp = new Panel_Principal();
+        
         pp.setVisible(true);
+        webcam.close();
         this.setVisible(false);
+        
 
 
     }//GEN-LAST:event_btnmenuActionPerformed
@@ -347,16 +372,6 @@ public class Registro_estudiante extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Registro_estudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        SwingUtilities.invokeLater(() -> {
-            Registrar_Estudiante e = new Registrar_Estudiante();
-            Registro_estudiante Reg = new Registro_estudiante();
-            controladorEstudiante con = new controladorEstudiante(e, Reg);
-            Reg.setVisible(true);
-
-            // Inicia la cámara al abrir la ventana
-            Reg.startCamera();
-        });
 
     }
 

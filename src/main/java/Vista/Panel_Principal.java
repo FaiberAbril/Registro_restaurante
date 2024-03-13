@@ -4,7 +4,10 @@
  */
 package Vista;
 
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +16,16 @@ import javax.swing.JPanel;
 
 public class Panel_Principal extends javax.swing.JFrame {
 
+     int largoCamara = 0;
+    int anchoCamara = 0;
+    Dimension dimension = new Dimension(176, 144);
+    // Dimension dimsensioncamara = WebcamResolution.VGA.getSize();
+    Webcam webcam = Webcam.getDefault();
+    WebcamPanel webcamPanel = new WebcamPanel(webcam, dimension, false);
+
+    
+    
+    
     /**
      * Creates new form Panel_Principal
      */
@@ -92,6 +105,11 @@ public class Panel_Principal extends javax.swing.JFrame {
                 btnregistroMouseClicked(evt);
             }
         });
+        btnregistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnregistroActionPerformed(evt);
+            }
+        });
         panellateral.add(btnregistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 110, 90));
 
         btnactualizacion.setBackground(new java.awt.Color(255, 153, 0));
@@ -166,8 +184,10 @@ public class Panel_Principal extends javax.swing.JFrame {
 
     private void btnregistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnregistroMouseClicked
         Registro_estudiante res = new Registro_estudiante();
+        res.startCamera();
         res.setVisible(true);
         this.setVisible(false); 
+       
          
     
     }//GEN-LAST:event_btnregistroMouseClicked
@@ -178,6 +198,11 @@ public class Panel_Principal extends javax.swing.JFrame {
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_btnactualizacionMouseClicked
 
+    private void btnregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnregistroActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -205,10 +230,13 @@ public class Panel_Principal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Panel_Principal().setVisible(true);
+                
             }
         });
     }
