@@ -321,9 +321,16 @@ public class Registro_estudiante extends javax.swing.JFrame {
     String tipoBeneficio = (String) cbBeneficio.getSelectedItem();
     String estado = (String) cbEstado.getSelectedItem();
         
-        
-        
-        
+     e.setNomEstudiante(nomEstu);
+     e.setApeEstudiante(apeEstu);
+     e.setTipoDocu(tipoDocu);
+     e.setNumeDocumento(numDocumento);
+     e.setEdad(edad);
+     e.setGrado(grado);
+     e.setTipoBeneficio(tipoBeneficio);
+     e.setEstado(estado);
+     
+     
         SwingUtilities.invokeLater(() -> {
         
             controladorEstudiante con = new controladorEstudiante(e, Reg);
