@@ -26,7 +26,7 @@ import javax.swing.plaf.synth.Region;
  * @author CATA
  */
 public class Registro_estudiante extends javax.swing.JFrame {
-
+    
     private Panel_Principal pp;
     int largoCamara = 0;
     int anchoCamara = 0;
@@ -34,7 +34,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
     // Dimension dimsensioncamara = WebcamResolution.VGA.getSize();
     Webcam webcam = Webcam.getDefault();
     WebcamPanel webcamPanel = new WebcamPanel(webcam, dimension, false);
-
+    
     BufferedImage ruta;
     int contador = 0;
 
@@ -48,18 +48,18 @@ public class Registro_estudiante extends javax.swing.JFrame {
         initComponents();
         initializeWebcam();
         setLocationRelativeTo(null);
-
+        
     }
-
+    
     private void initializeWebcam() {
-
+        
         Dimension dimension = new Dimension(320, 240);
         webcam = Webcam.getDefault();
         if (!webcam.isOpen()) {
             webcam.setViewSize(WebcamResolution.VGA.getSize());
         }
         webcamPanel = new WebcamPanel(webcam, dimension, false);
-
+        
         pnlCamara.setLayout(new FlowLayout());
         pnlCamara.add(webcamPanel);
         webcamPanel.setFillArea(true);
@@ -69,30 +69,29 @@ public class Registro_estudiante extends javax.swing.JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
 
-              /*  try {
+                /*  try {
                     webcam.open();
                     // do your stuff here, take photo etc
                 } finally {
                     webcamPanel.stop();
                     webcam.close();
                 }*/
-
             }
         });
     }
-
+    
     public void captureAndSaveImage(String numeroDocumento) {
         BufferedImage image = webcam.getImage();
         try {
             // Cambia la ruta según donde quieras guardar la imagen
             File folder = new File("src\\main\\java\\fotos");
-
+            
             if (!folder.exists()) {
                 folder.mkdirs(); // Asegurar que todos los directorios padres se creen
             }
-
+            
             String fileName = numeroDocumento + ".jpg";
-
+            
             System.out.println(folder.getAbsolutePath());
 
             // Crear el objeto File con la ruta completa del archivo
@@ -100,13 +99,13 @@ public class Registro_estudiante extends javax.swing.JFrame {
 
             // Guardar la imagen en el archivo
             ImageIO.write(image, "JPG", file);
-
+            
         } catch (IOException e) {
             e.printStackTrace();
-
+            
         }
     }
-
+    
     public void startCamera() {
         Thread cameraThread = new Thread(() -> webcamPanel.start());
         cameraThread.setDaemon(true);
@@ -307,35 +306,33 @@ public class Registro_estudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumEstuActionPerformed
 
     private void btnguardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardar2ActionPerformed
-       
-      Registrar_Estudiante e = new Registrar_Estudiante();
-      Registro_estudiante Reg = new Registro_estudiante();    
+        Registrar_Estudiante e = new Registrar_Estudiante();
+        Registro_estudiante Reg = new Registro_estudiante();
+        String nomEstu = txtnomEstu.getText();
+        String apeEstu = txtapeEstu.getText();
+        String tipoDocu = (String) cbTipo.getSelectedItem();
+        String numDocumento = txtnumEstu.getText();
+        String edad = txtEdad.getText();
+        String grado = txtGrado.getText();
+        String tipoBeneficio = (String) cbBeneficio.getSelectedItem();
+        String estado = (String) cbEstado.getSelectedItem();
         
+        e.setNomEstudiante(nomEstu);
+        e.setApeEstudiante(apeEstu);
+        e.setTipoDocu(tipoDocu);
+        e.setNumeDocumento(numDocumento);
+        e.setEdad(edad);
+        e.setGrado(grado);
+        e.setTipoBeneficio(tipoBeneficio);
+        e.setEstado(estado);
         
-     String nomEstu = txtnomEstu.getText();
-    String apeEstu = txtapeEstu.getText();
-    String tipoDocu = (String)cbTipo.getSelectedItem();
-    String numDocumento = txtnumEstu.getText();
-    String edad = txtEdad.getText();
-    String grado = txtGrado.getText();
-    String tipoBeneficio = (String) cbBeneficio.getSelectedItem();
-    String estado = (String) cbEstado.getSelectedItem();
-        
-     e.setNomEstudiante(nomEstu);
-     e.setApeEstudiante(apeEstu);
-     e.setTipoDocu(tipoDocu);
-     e.setNumeDocumento(numDocumento);
-     e.setEdad(edad);
-     e.setGrado(grado);
-     e.setTipoBeneficio(tipoBeneficio);
-     e.setEstado(estado);
      
-     
-        SwingUtilities.invokeLater(() -> {
         
-            controladorEstudiante con = new controladorEstudiante(e, Reg);
-        });
-                
+        controladorEstudiante con = new controladorEstudiante(e, Reg);
+        captureAndSaveImage(numDocumento);
+        
+        con.InsertarEstudiante(e);
+        con.Guarda();
     }//GEN-LAST:event_btnguardar2ActionPerformed
 
     private void btnmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseClicked
@@ -349,7 +346,6 @@ public class Registro_estudiante extends javax.swing.JFrame {
         webcam.close();
         this.setVisible(false);
         
-
 
     }//GEN-LAST:event_btnmenuActionPerformed
 
@@ -380,6 +376,14 @@ public class Registro_estudiante extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        SwingUtilities.invokeLater(() -> {
+
+            /**
+             * Registrar_Estudiante e = new Registrar_Estudiante();
+             * Registro_estudiante Reg = new Registro_estudiante();
+             * controladorEstudiante con = new controladorEstudiante(e, Reg);*
+             */
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

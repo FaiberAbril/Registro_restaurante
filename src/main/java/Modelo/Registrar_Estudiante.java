@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import Vista.Registro_estudiante;
+
 /**
  *
  * @author CATA
@@ -34,6 +36,10 @@ public class Registrar_Estudiante {
  
 
     public Registrar_Estudiante() {
+    }
+
+    public Registrar_Estudiante(Class<? extends Registro_estudiante> aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**

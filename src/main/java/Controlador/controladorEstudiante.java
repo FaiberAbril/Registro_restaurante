@@ -37,19 +37,16 @@ public class controladorEstudiante implements ActionListener {
         
     }
     
-    
 
     public controladorEstudiante(Registrar_Estudiante usuario, Registro_estudiante Reg) {
-
         this.e = usuario;
         this.Reg = Reg;
-
         this.Reg.btnguardar2.addActionListener(this);
 
     }
 
     public String  Guarda() {
-     String nomEstu = Reg.txtnomEstu.getText();
+    String nomEstu = Reg.txtnomEstu.getText();
     String apeEstu = Reg.txtapeEstu.getText();
     String tipoDocu = (String) Reg.cbTipo.getSelectedItem();
     String numDocumento = Reg.txtnumEstu.getText();
@@ -57,14 +54,19 @@ public class controladorEstudiante implements ActionListener {
     String grado = Reg.txtGrado.getText();
     String tipoBeneficio = (String) Reg.cbBeneficio.getSelectedItem();
     String estado = (String) Reg.cbEstado.getSelectedItem();
+    
+    
+   /*
 
     if (nomEstu.isEmpty() || apeEstu.isEmpty() || tipoDocu.isEmpty()
             || numDocumento.isEmpty() || edad.isEmpty() || grado.isEmpty()
             || tipoBeneficio.isEmpty() || estado.isEmpty()) {
         JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.");
+        System.out.println(numDocumento+"-"+ apeEstu+"-"+ tipoDocu +"-"+ nomEstu+"-"+edad+"-"+grado+"-"+tipoBeneficio+"-"+estado);
         return null;
     }      
-        
+        */
+   
         e.setNomEstudiante(Reg.txtnomEstu.getText());
         e.setApeEstudiante(Reg.txtapeEstu.getText());
         e.setTipoDocu((String) Reg.cbTipo.getSelectedItem());
@@ -75,21 +77,11 @@ public class controladorEstudiante implements ActionListener {
         e.setEstado((String) Reg.cbEstado.getSelectedItem());
         
        
-        if (InsertarEstudiante(e)) {
-            JOptionPane.showMessageDialog(null, "Estudiante Registrado");
-            Reg.txtnomEstu.setText("");
-            Reg.txtapeEstu.setText("");
-            Reg.txtnumEstu.setText("");
-            Reg.txtEdad.setText("");
-            Reg.txtGrado.setText("");
 
-         return e.getNumeDocumento();
-        } else {
-            JOptionPane.showMessageDialog(null, "Error Registro");
-        }
         
       return e.getNumeDocumento();
     }
+    
 
     public boolean InsertarEstudiante(Registrar_Estudiante e) {
 
@@ -111,6 +103,7 @@ public class controladorEstudiante implements ActionListener {
             ps.setString(9, e.getEstado());
             ps.execute();
             cn.close();
+            Guarda();
             return true;
 
         } catch (Exception error) {
