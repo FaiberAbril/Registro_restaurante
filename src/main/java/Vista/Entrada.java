@@ -6,6 +6,7 @@ package Vista;
 
 import Configuracion.Conexion;
 
+
 import Modelo.Registrar_Estudiante;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
@@ -264,7 +265,7 @@ public class Entrada extends javax.swing.JFrame {
         String numeDocumento = txtnumdocu.getText();
 
         Registrar_Estudiante Resultado = buscarporCedula(numeDocumento);
-        
+     
         
 
         if (Resultado.getNumeDocumento().equals(numeDocumento)) {
@@ -297,7 +298,8 @@ dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void txtRecibioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRecibioMouseClicked
-      
+
+
       
     // TODO add your handling code here:
     }//GEN-LAST:event_txtRecibioMouseClicked
