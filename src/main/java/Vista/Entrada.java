@@ -5,7 +5,7 @@
 package Vista;
 
 import Configuracion.Conexion;
-import Controlador.controladorTiempo;
+
 import Modelo.Registrar_Estudiante;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
@@ -102,6 +102,7 @@ public class Entrada extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtDN = new javax.swing.JLabel();
+        txtRecibio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +141,12 @@ public class Entrada extends javax.swing.JFrame {
         });
 
         jLabel7.setText("N° Documento:");
+
+        txtRecibio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtRecibioMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,6 +189,10 @@ public class Entrada extends javax.swing.JFrame {
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnRegistro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtRecibio, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +231,9 @@ public class Entrada extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtbeneficio, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
+                .addComponent(txtRecibio, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnRegistro)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -283,6 +296,12 @@ panel_Principal.setVisible(true);
 dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void txtRecibioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRecibioMouseClicked
+      
+      
+    // TODO add your handling code here:
+    }//GEN-LAST:event_txtRecibioMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +358,7 @@ dispose();// TODO add your handling code here:
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbimagen;
     private javax.swing.JLabel txtDN;
+    private javax.swing.JLabel txtRecibio;
     private javax.swing.JLabel txtapellidos;
     private javax.swing.JLabel txtbeneficio;
     private javax.swing.JLabel txtestado;
