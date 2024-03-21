@@ -5,13 +5,18 @@
 package Vista;
 
 import Configuracion.Conexion;
-
+import Controlador.Comida;
 
 import Modelo.Registrar_Estudiante;
 import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -21,6 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class Entrada extends javax.swing.JFrame {
 
+    private ArrayList<String> mensajes;
     String numeDocumento;
     Connection coneccion;
     Conexion conexionbasededatos = new Conexion();
@@ -64,18 +70,14 @@ public class Entrada extends javax.swing.JFrame {
 
     }
 
+    public void mostrarfoto(String numeroDocumentoestudiante) {
 
-    
-    
-    
-    public void mostrarfoto(String numeroDocumentoestudiante){
-        
-        String ruta = "src\\main\\java\\fotos\\"+numeroDocumentoestudiante+".jpg";
+        String ruta = "src\\main\\java\\fotos\\" + numeroDocumentoestudiante + ".jpg";
         ImageIcon foto = new ImageIcon(ruta);
         lbimagen.setIcon(foto);
-         
-    
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,6 +145,8 @@ public class Entrada extends javax.swing.JFrame {
 
         jLabel7.setText("N° Documento:");
 
+        txtRecibio.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        txtRecibio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtRecibio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtRecibioMouseClicked(evt);
@@ -261,12 +265,11 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumdocuActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-
+        Comida comida = new Comida();
+        String mensaje = "Recibido";
         String numeDocumento = txtnumdocu.getText();
 
         Registrar_Estudiante Resultado = buscarporCedula(numeDocumento);
-     
-        
 
         if (Resultado.getNumeDocumento().equals(numeDocumento)) {
             txtDN.setText(numeDocumento);
@@ -276,32 +279,30 @@ public class Entrada extends javax.swing.JFrame {
             txtestado.setText(Resultado.getEstado());
             txtbeneficio.setText(Resultado.getTipoBeneficio());
             mostrarfoto(numeDocumento);
-            
-                
+
         } else {
             txtnombres.setText("");
             txtapellidos.setText("");
             txtgrado.setText("");
             txtestado.setText("");
         }
-        
+
         txtnumdocu.setText("");
-        
-        
+        txtRecibio.setText(mensaje);
+       comida.guardarMensaje(numeDocumento, mensaje);
+
 
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-Panel_Principal panel_Principal = new Panel_Principal();
-panel_Principal.setVisible(true);
-dispose();// TODO add your handling code here:
+        Panel_Principal panel_Principal = new Panel_Principal();
+        panel_Principal.setVisible(true);
+        dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void txtRecibioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRecibioMouseClicked
 
-
-      
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtRecibioMouseClicked
 
     /**
