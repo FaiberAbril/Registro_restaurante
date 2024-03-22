@@ -20,13 +20,14 @@ Vista\Registro_estudiante.class
 Vista\Panel_Principal$2.class
 Modelo\Registrar_Estudiante.class
 Vista\Estudiantes$4.class
-Controlador\controladorTiempo$1.class
 Vista\Entrada$3.class
 Vista\Estudiantes$8.class
+Vista\Panel_Principal$5.class
 Vista\Estudiantes$9.class
-Controlador\controladorTiempo.class
+Vista\Entrada$5.class
 Configuracion\Conexion.class
 Vista\Panel_Principal$3.class
 Vista\Estudiantes$1.class
 Vista\Estudiantes$6.class
+Controlador\Comida.class
 Vista\Registro_estudiante$5.class

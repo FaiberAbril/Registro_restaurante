@@ -13,8 +13,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -30,10 +31,29 @@ public class Entrada extends javax.swing.JFrame {
     String numeDocumento;
     Connection coneccion;
     Conexion conexionbasededatos = new Conexion();
+    PreparedStatement ps;
+    ResultSet rs;
+    Calendar hora_recepcion = new GregorianCalendar();
 
     public Entrada() {
         initComponents();
         setLocationRelativeTo(null);
+        this.getContentPane().setBackground(getBackground());
+        this.setTitle("Hora y Fecha Actual");
+
+    }
+
+    public void insertFecha() {
+
+        PreparedStatement ps = null;
+        String sql = "INSERT INTO mensajes(hora_recepcion)values(?)";
+        try {
+            coneccion = conexionbasededatos.getconeccionbasedatos();
+            ps = coneccion.prepareStatement(sql);
+            ps.setString(3, hora_recepcion.getCalendarType());
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
     public Registrar_Estudiante buscarporCedula(String numerodocumento) {
@@ -289,9 +309,10 @@ public class Entrada extends javax.swing.JFrame {
 
         txtnumdocu.setText("");
         txtRecibio.setText(mensaje);
-       comida.guardarMensaje(numeDocumento, mensaje);
 
-
+        comida.guardarMensaje(numeDocumento, mensaje);
+        insertFecha();
+        comida.consultarMensajes(numeDocumento);
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
