@@ -28,16 +28,13 @@ import javax.swing.JOptionPane;
  */
 public class Entrada extends javax.swing.JFrame {
 
-    private ArrayList<String> mensajes;
-    Comida comida = new Comida();
-    String numeDocumento;
-    String mensajeRecibido = "Recibido";
-    Connection coneccion;
+  //base de datos
     Conexion conexionbasededatos = new Conexion();
-    PreparedStatement ps;
-    ResultSet rs;
+  
+    // variables globales numerodeDocumento y mensaje
+    String numeDocumento = "0";
     Calendar hora_recepcion = new GregorianCalendar();
-
+    
     public Entrada() {
         initComponents();
         setLocationRelativeTo(null);
@@ -47,84 +44,58 @@ public class Entrada extends javax.swing.JFrame {
     }
 
     public void insertFecha() {
-
-        PreparedStatement ps = null;
+        Connection coneccioninsertarFecha;
+        PreparedStatement psinsertarFecha;
+        
         String sql = "INSERT INTO mensajes(hora_recepcion)values(?)";
         try {
-            coneccion = conexionbasededatos.getconeccionbasedatos();
-            ps = coneccion.prepareStatement(sql);
-            ps.setString(3, hora_recepcion.getCalendarType());
-            ps.executeUpdate();
+            coneccioninsertarFecha = conexionbasededatos.getconeccionbasedatos();
+            psinsertarFecha = coneccioninsertarFecha.prepareStatement(sql);
+            psinsertarFecha.setString(1, hora_recepcion.getCalendarType());
+            psinsertarFecha.executeUpdate();
         } catch (Exception e) {
-        }
-    }
-    
-    
-    private void consultarMensaje() {
-        LocalTime horaActual = LocalTime.now();
-        if (horaActual.getHour() == 12 && horaActual.getMinute() == 0) {
-            String mensaje = obtenerMensaje();
             
-            System.out.println(mensaje);
-            
-            if (mensaje != null) {
-                txtRecibio.setText(mensaje);
-                  
-            } else {
-                txtRecibio.setText("No Recibió");
-            }
-        } else {
-            txtRecibio.setText("No ha Recibido");
         }
     }
 
+   
     private String obtenerMensaje() {
-        Connection cn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        String mensaje = null;
-        String sql = "SELECT mensaje FROM mensajes ORDER BY id DESC LIMIT 1";
-        try {
-            cn = conexionbasededatos.getconeccionbasedatos();
+        Connection cn = conexionbasededatos.getconeccionbasedatos();
+        PreparedStatement ps ;
+        ResultSet rs;
+        String mensaje = "No Recibió";
+        String sql = "SELECT  mensaje FROM mensajes where numDocumento=?";
+      
+        try { 
             ps = cn.prepareStatement(sql);
+            ps.setString(1,numeDocumento);
             rs = ps.executeQuery();
             if (rs.next()) {
-                mensaje = rs.getString(mensajeRecibido);
+                mensaje = rs.getString(1);
             }
         } catch (SQLException e) {
             System.err.println("Error al consultar el mensaje en la base de datos: " + e.getMessage());
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (cn != null) {
-                    cn.close();
-                }
-            } catch (SQLException ex) {
-                System.err.println("Error al cerrar la conexión: " + ex.getMessage());
-            }
-        }
+        } 
+        
         return mensaje;
     }
-
-    public Registrar_Estudiante buscarporCedula(String numerodocumento) {
+    
+    
+  
+    public Registrar_Estudiante buscarporCedula() {
 
         Registrar_Estudiante registroEstudiante = new Registrar_Estudiante();
-
-        coneccion = conexionbasededatos.getconeccionbasedatos();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+        Connection cn = conexionbasededatos.getconeccionbasedatos();
+        PreparedStatement ps;
+        ResultSet rs;
 
         String sql = "select * from Registrar_Estudiante where numeDocumento=?";
 
         try {
-            ps = coneccion.prepareStatement(sql);
-            ps.setString(1, numerodocumento);
+            ps = cn.prepareStatement(sql);
+            ps.setString(1, numeDocumento);
             rs = ps.executeQuery();
+           
             while (rs.next()) {
                 registroEstudiante.setId_estudiante(rs.getInt(1));
                 registroEstudiante.setNumeDocumento(rs.getString(5));
@@ -133,6 +104,8 @@ public class Entrada extends javax.swing.JFrame {
                 registroEstudiante.setGrado(rs.getString(7));
                 registroEstudiante.setEstado(rs.getString(9));
                 registroEstudiante.setTipoBeneficio(rs.getString(8));
+                
+              
 
                 return registroEstudiante;
             }
@@ -340,21 +313,31 @@ public class Entrada extends javax.swing.JFrame {
     }//GEN-LAST:event_txtnumdocuActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        Comida comida = new Comida();
+        numeDocumento = txtnumdocu.getText();
+
+        Registrar_Estudiante Resultado = buscarporCedula();
         
-      
-        String numeDocumento = txtnumdocu.getText();
-
-        Registrar_Estudiante Resultado = buscarporCedula(numeDocumento);
-
-        if (Resultado.getNumeDocumento().equals(numeDocumento)) {
+        comida.guardarMensaje(numeDocumento, "Recibido");  
+        insertFecha();
+        
+        
+        
+        if (Resultado != null && Resultado.getNumeDocumento() != null && Resultado.getNumeDocumento().equals(numeDocumento)) {
             txtDN.setText(numeDocumento);
             txtnombres.setText(Resultado.getNomEstudiante());
             txtapellidos.setText(Resultado.getApeEstudiante());
             txtgrado.setText(Resultado.getGrado());
             txtestado.setText(Resultado.getEstado());
             txtbeneficio.setText(Resultado.getTipoBeneficio());
+            
+            
+            txtRecibio.setText(obtenerMensaje());
+            
+            
+            
             mostrarfoto(numeDocumento);
-
+        
         } else {
             txtnombres.setText("");
             txtapellidos.setText("");
@@ -363,15 +346,38 @@ public class Entrada extends javax.swing.JFrame {
         }
 
         txtnumdocu.setText(numeDocumento);
-        txtRecibio.setText(mensajeRecibido);
 
-        comida.guardarMensaje(numeDocumento, mensajeRecibido);
-        insertFecha();
-        consultarMensaje();
-        obtenerMensaje();
+       
+ 
         
+
+       
+
+
     }//GEN-LAST:event_btnRegistroActionPerformed
 
+       public void consultarMensaje() {
+        LocalTime horaActual = LocalTime.now();
+        LocalTime horaLimiteInicio = LocalTime.of(12, 0);
+        LocalTime horaLimiteFin = LocalTime.of(14, 30);
+
+  
+        if (horaActual.isAfter(horaLimiteInicio) && horaActual.isBefore(horaLimiteFin)) {
+            String mensaje = obtenerMensaje();
+
+            if (mensaje != null) {
+                txtRecibio.setText(mensaje);
+            } else {
+                txtRecibio.setText("No Recibió");
+            }
+        } else {
+            txtRecibio.setText("");
+        }
+    }
+    
+    
+    
+    
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         Panel_Principal panel_Principal = new Panel_Principal();
         panel_Principal.setVisible(true);
