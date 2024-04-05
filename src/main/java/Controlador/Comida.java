@@ -60,12 +60,13 @@ public class Comida {
 
     }
 
-    public void guardarMensaje(String numDocumento, String mensaje) {
+    public void guardarMensaje(String numDocumento, String mensaje, String tipoBeneficio) {
         PreparedStatement ps = null;
-        String sql = "INSERT INTO mensajes (numDocumento, mensaje) VALUES (?, ?)";
+        String sql = "INSERT INTO mensajes (numDocumento, mensaje, tipoBeneficio) VALUES (?, ?, ?)";
 
         if (validarEstudiante(numDocumento) == true) {
-            JOptionPane.showMessageDialog(null, "ya Recibio el beneficio");
+            JOptionPane.showMessageDialog(null, "YA RECIBIO EL BENEFICIO \n "  +  tipoBeneficio);
+
         } else {
             try {
                 cn = conexionbasededatos.getconeccionbasedatos();
@@ -77,6 +78,8 @@ public class Comida {
                     ps = cn.prepareStatement(sql);
                     ps.setString(1, numDocumento);
                     ps.setString(2, mensaje);
+                    ps.setString(3, tipoBeneficio);
+                   
                     ps.executeUpdate();
                     System.out.println("Mensaje guardado exitosamente en la base de datos.");
                 } else {

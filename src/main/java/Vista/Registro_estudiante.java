@@ -50,6 +50,16 @@ public class Registro_estudiante extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
     }
+    public void limpiarfomulario(){
+    txtnomEstu.setText("");
+    txtapeEstu.setText("");
+    cbTipo.setSelectedIndex(0);
+    txtnumEstu.setText("");
+    txtGrado.setText("");
+    txtEdad.setText("");
+    cbBeneficio.setSelectedIndex(0);
+    cbEstado.setSelectedIndex(0);
+    }
     
     private void initializeWebcam() {
         
@@ -333,6 +343,7 @@ public class Registro_estudiante extends javax.swing.JFrame {
         
         con.InsertarEstudiante(e);
         con.Guarda();
+        limpiarfomulario();
     }//GEN-LAST:event_btnguardar2ActionPerformed
 
     private void btnmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseClicked

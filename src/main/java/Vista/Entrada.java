@@ -28,13 +28,14 @@ import javax.swing.JOptionPane;
  */
 public class Entrada extends javax.swing.JFrame {
 
-  //base de datos
+    //base de datos
     Conexion conexionbasededatos = new Conexion();
-  
+
     // variables globales numerodeDocumento y mensaje
     String numeDocumento = "0";
-    Calendar hora_recepcion = new GregorianCalendar();
     
+    Calendar hora_recepcion = new GregorianCalendar();
+
     public Entrada() {
         initComponents();
         setLocationRelativeTo(null);
@@ -46,7 +47,7 @@ public class Entrada extends javax.swing.JFrame {
     public void insertFecha() {
         Connection coneccioninsertarFecha;
         PreparedStatement psinsertarFecha;
-        
+
         String sql = "INSERT INTO mensajes(hora_recepcion)values(?)";
         try {
             coneccioninsertarFecha = conexionbasededatos.getconeccionbasedatos();
@@ -54,34 +55,31 @@ public class Entrada extends javax.swing.JFrame {
             psinsertarFecha.setString(1, hora_recepcion.getCalendarType());
             psinsertarFecha.executeUpdate();
         } catch (Exception e) {
-            
+
         }
     }
 
-   
     private String obtenerMensaje() {
         Connection cn = conexionbasededatos.getconeccionbasedatos();
-        PreparedStatement ps ;
+        PreparedStatement ps;
         ResultSet rs;
         String mensaje = "No Recibió";
         String sql = "SELECT  mensaje FROM mensajes where numDocumento=?";
-      
-        try { 
+
+        try {
             ps = cn.prepareStatement(sql);
-            ps.setString(1,numeDocumento);
+            ps.setString(1, numeDocumento);
             rs = ps.executeQuery();
             if (rs.next()) {
                 mensaje = rs.getString(1);
             }
         } catch (SQLException e) {
             System.err.println("Error al consultar el mensaje en la base de datos: " + e.getMessage());
-        } 
-        
+        }
+
         return mensaje;
     }
-    
-    
-  
+
     public Registrar_Estudiante buscarporCedula() {
 
         Registrar_Estudiante registroEstudiante = new Registrar_Estudiante();
@@ -95,7 +93,7 @@ public class Entrada extends javax.swing.JFrame {
             ps = cn.prepareStatement(sql);
             ps.setString(1, numeDocumento);
             rs = ps.executeQuery();
-           
+
             while (rs.next()) {
                 registroEstudiante.setId_estudiante(rs.getInt(1));
                 registroEstudiante.setNumeDocumento(rs.getString(5));
@@ -104,8 +102,6 @@ public class Entrada extends javax.swing.JFrame {
                 registroEstudiante.setGrado(rs.getString(7));
                 registroEstudiante.setEstado(rs.getString(9));
                 registroEstudiante.setTipoBeneficio(rs.getString(8));
-                
-              
 
                 return registroEstudiante;
             }
@@ -315,14 +311,13 @@ public class Entrada extends javax.swing.JFrame {
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
         Comida comida = new Comida();
         numeDocumento = txtnumdocu.getText();
-
+        
         Registrar_Estudiante Resultado = buscarporCedula();
-        
-        comida.guardarMensaje(numeDocumento, "Recibido");  
+         String tipoBeneficio = Resultado.getTipoBeneficio();
+
+        comida.guardarMensaje(numeDocumento, "Recibido", tipoBeneficio);
         insertFecha();
-        
-        
-        
+
         if (Resultado != null && Resultado.getNumeDocumento() != null && Resultado.getNumeDocumento().equals(numeDocumento)) {
             txtDN.setText(numeDocumento);
             txtnombres.setText(Resultado.getNomEstudiante());
@@ -330,14 +325,15 @@ public class Entrada extends javax.swing.JFrame {
             txtgrado.setText(Resultado.getGrado());
             txtestado.setText(Resultado.getEstado());
             txtbeneficio.setText(Resultado.getTipoBeneficio());
+
             
             
             txtRecibio.setText(obtenerMensaje());
-            
-            
-            
+
             mostrarfoto(numeDocumento);
-        
+
+           
+            
         } else {
             txtnombres.setText("");
             txtapellidos.setText("");
@@ -347,21 +343,14 @@ public class Entrada extends javax.swing.JFrame {
 
         txtnumdocu.setText(numeDocumento);
 
-       
- 
-        
-
-       
-
 
     }//GEN-LAST:event_btnRegistroActionPerformed
 
-       public void consultarMensaje() {
+    public void consultarMensaje() {
         LocalTime horaActual = LocalTime.now();
         LocalTime horaLimiteInicio = LocalTime.of(12, 0);
         LocalTime horaLimiteFin = LocalTime.of(14, 30);
 
-  
         if (horaActual.isAfter(horaLimiteInicio) && horaActual.isBefore(horaLimiteFin)) {
             String mensaje = obtenerMensaje();
 
@@ -374,10 +363,8 @@ public class Entrada extends javax.swing.JFrame {
             txtRecibio.setText("");
         }
     }
-    
-    
-    
-    
+
+
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         Panel_Principal panel_Principal = new Panel_Principal();
         panel_Principal.setVisible(true);
