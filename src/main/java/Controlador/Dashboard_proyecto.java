@@ -15,4 +15,6 @@ public class Dashboard_proyecto {
     public static void main(String[] args) {
      Panel_Principal pp = new Panel_Principal();    
     }
+    
+    
 }

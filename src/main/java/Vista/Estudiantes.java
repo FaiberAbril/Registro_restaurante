@@ -82,7 +82,14 @@ public class Estudiantes extends javax.swing.JFrame {
     }
 
     public void limpiarformulario() {
-
+        txtNombre.setText("");
+        txtApellido.setText("");
+        cbTipo.setSelectedIndex(0);
+        txtNumero.setText("");
+        txtedad.setText("");
+        txtgrado.setText("");
+        cbBeneficio.setSelectedIndex(0);
+        cbEst.setSelectedIndex(0);
     }
 
     public void listar() {
@@ -252,6 +259,11 @@ public class Estudiantes extends javax.swing.JFrame {
         btnmenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnmenuMouseClicked(evt);
+            }
+        });
+        btnmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmenuActionPerformed(evt);
             }
         });
 
@@ -424,10 +436,7 @@ public class Estudiantes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtfiltroKeyTyped
 
-       
-    
-    
-    
+
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
         int Id_estudiante = Integer.parseInt(tbEstudiantes.getValueAt(fila, 0).toString());
@@ -457,7 +466,6 @@ public class Estudiantes extends javax.swing.JFrame {
             ps.setString(7, Beneficio);
             ps.setString(8, Estado);
             ps.setInt(9, Id_estudiante);
-
             if (ps.executeUpdate() == 1) {
                 JOptionPane.showMessageDialog(null, "Actualizacion con exito");
                 limpiartabla();
@@ -483,7 +491,7 @@ public class Estudiantes extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApellidoActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-      
+
         int Id_estudiante = Integer.parseInt(tbEstudiantes.getValueAt(fila, 0).toString());
         coneccion = conexionbasededatos.getconeccionbasedatos();
         PreparedStatement ps = null;
@@ -494,27 +502,31 @@ public class Estudiantes extends javax.swing.JFrame {
             ps = coneccion.prepareStatement(sql);
             ps.setInt(1, Id_estudiante);
 
-             if (ps.executeUpdate() == 1) {
+            if (ps.executeUpdate() == 1) {
                 JOptionPane.showMessageDialog(null, "Datos eliminados con exito");
                 limpiartabla();
                 listar();
                 limpiarformulario();
-                
+
             } else {
                 JOptionPane.showMessageDialog(null, "Error");
             }
-            
+
         } catch (SQLException ex) {
-            
+
         }
-       
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnmenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmenuMouseClicked
-Panel_Principal pp = new Panel_Principal();
-pp.setVisible(true);
-this.setVisible(false);
+        Panel_Principal pp = new Panel_Principal();
+        pp.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnmenuMouseClicked
+
+    private void btnmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnmenuActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

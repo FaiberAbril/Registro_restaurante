@@ -13,9 +13,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,6 +38,7 @@ public class Comida {
     public Comida() {
 
     }
+  
 
     public Boolean validarEstudiante(String numDocumento) {
         Connection cn = conexionbasededatos.getconeccionbasedatos();
@@ -103,5 +107,46 @@ public class Comida {
         }
 
     }
-
+    
+public void limpiarRegistrosAntiguos() {
+    try {
+        cn = conexionbasededatos.getconeccionbasedatos();
+        if (cn != null) {
+            String sql = "DELETE FROM mensajes WHERE fecha <= ?";
+            LocalDate fechaActual = LocalDate.now();
+            LocalDate fechaAnterior = fechaActual.minusDays(1);
+            ps = cn.prepareStatement(sql);
+            ps.setDate(1, java.sql.Date.valueOf(fechaAnterior));
+            int filasEliminadas = ps.executeUpdate();
+            System.out.println(filasEliminadas + " registros eliminados de la base de datos.");
+        } else {
+            System.err.println("Error: No se pudo establecer conexión a la base de datos.");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al limpiar los registros antiguos: " + e.getMessage());
+    } finally {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar la conexión: " + ex.getMessage());
+        }
+    }
 }
+
+    public void programarTareaLimpiarRegistros() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                limpiarRegistrosAntiguos();
+            }
+        }, 0, 24 * 60 * 60 * 1000); 
+    }
+}   
+
+

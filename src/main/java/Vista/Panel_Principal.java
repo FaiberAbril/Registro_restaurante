@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.Comida;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import java.awt.Color;
@@ -16,16 +17,13 @@ import javax.swing.JPanel;
 
 public class Panel_Principal extends javax.swing.JFrame {
 
-     int largoCamara = 0;
+    int largoCamara = 0;
     int anchoCamara = 0;
     Dimension dimension = new Dimension(176, 144);
     // Dimension dimsensioncamara = WebcamResolution.VGA.getSize();
     Webcam webcam = Webcam.getDefault();
     WebcamPanel webcamPanel = new WebcamPanel(webcam, dimension, false);
 
-    
-    
-    
     /**
      * Creates new form Panel_Principal
      */
@@ -177,6 +175,10 @@ public class Panel_Principal extends javax.swing.JFrame {
     }
 
     private void btniconoestudianteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btniconoestudianteMouseClicked
+       Comida comida = new Comida();
+       comida.limpiarRegistrosAntiguos();
+       
+
         Entrada ent = new Entrada();
         ent.setVisible(true);
         this.setVisible(false);// TODO add your handling code here:
@@ -186,10 +188,9 @@ public class Panel_Principal extends javax.swing.JFrame {
         Registro_estudiante res = new Registro_estudiante();
         res.startCamera();
         res.setVisible(true);
-        this.setVisible(false); 
-       
-         
-    
+        this.setVisible(false);
+
+
     }//GEN-LAST:event_btnregistroMouseClicked
 
     private void btnactualizacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnactualizacionMouseClicked
@@ -202,7 +203,6 @@ public class Panel_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnregistroActionPerformed
 
-    
     /**
      * @param args the command line arguments
      */
@@ -230,13 +230,11 @@ public class Panel_Principal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Panel_Principal().setVisible(true);
-                
+
             }
         });
     }
